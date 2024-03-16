@@ -6,4 +6,47 @@
     android:layout_height="match_parent"
     tools:context=".activity_publicaciones">
 
+    <TextView
+        android:id="@+id/lbl_publi_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/mis_publicaciones_publicmt_qe"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="20sp"
+        android:fontFamily="@font/nunito_extrabold"
+        />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_publi_mascotas"
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginEnd="10sp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/navega_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_publi_title"
+        />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navega_bar"
+        android:layout_width="match_parent"
+        android:layout_height="55sp"
+        android:background="@color/violetligth"
+        app:itemIconTint="?attr/textColorAlertDialogListItem"
+        app:itemTextColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/my_navigation_items"
+        app:shapeAppearanceOverlay="@style/roundedImageViewSmall"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,6 +21,8 @@
             android:layout_height="70dp"
             android:text="Listar Mascota"
             android:fontFamily="@font/nunito_extrabold"
+            android:background="@drawable/btn_menulist"
+            android:layout_marginBottom="10sp"
             />
         <Button
             android:id="@+id/btn_menu_agregar_mascota"
@@ -28,6 +30,8 @@
             android:layout_height="70dp"
             android:text="Agregar Mascota"
             android:fontFamily="@font/nunito_extrabold"
+            android:background="@drawable/btn_menulist"
+            android:layout_marginBottom="10sp"
             />
         <Button
             android:id="@+id/btn_menu_favoritos"
@@ -35,6 +39,8 @@
             android:layout_height="70dp"
             android:text="Favoritos"
             android:fontFamily="@font/nunito_extrabold"
+            android:background="@drawable/btn_menulist"
+            android:layout_marginBottom="10sp"
             />
         <Button
             android:id="@+id/btn_cerrar_sesion"
@@ -42,6 +48,8 @@
             android:layout_height="70dp"
             android:text="Cerrar Sesión"
             android:fontFamily="@font/nunito_extrabold"
+            android:background="@drawable/btn_menulist"
+            android:layout_marginBottom="10sp"
             />
 
     </LinearLayout>

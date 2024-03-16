@@ -1,3 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="spnSexo">
+        <item>Seleccione</item>
+        <item>Macho</item>
+        <item>Hembra</item>
+    </string-array>
+
+    <string-array name="spnTamanio">
+        <item>Seleccione</item>
+        <item>Pequeño</item>
+        <item>Mediano</item>
+        <item>Grande</item>
+    </string-array>
+
+    <string-array name="spnTipo">
+        <item>Seleccione</item>
+        <item>Perro</item>
+        <item>Gato</item>
+    </string-array>
+
 </resources>

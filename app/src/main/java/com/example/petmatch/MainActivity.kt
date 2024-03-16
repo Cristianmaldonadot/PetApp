@@ -7,20 +7,23 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.example.petmatch.io.ApiService
-import com.example.petmatch.io.response.LoginResponse
+import com.example.petmatch.proxy.interfaces.ApiService
+import com.example.petmatch.proxy.response.LoginResponse
+import com.example.petmatch.proxy.retrofit.MascotaRetrofit
 import com.example.petmatch.utils.PreferenceHelper
 import com.example.petmatch.utils.PreferenceHelper.get
 import com.example.petmatch.utils.PreferenceHelper.set
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.create
+import java.net.SocketTimeoutException
 
 class MainActivity : AppCompatActivity() {
 
-    private val apiService: ApiService by lazy {
-        ApiService.create()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +49,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun goToMenu() {
-        val ingresar =Intent(this,activity_menu::class.java)
+        val ingresar =Intent(this,activity_listar::class.java)
         startActivity(ingresar)
         finish()
 
@@ -55,10 +58,10 @@ class MainActivity : AppCompatActivity() {
     private fun createSessionPreference(token: String){
         val preference = PreferenceHelper.defaultPrefs(this)
         preference["token"] = token
-        Toast.makeText(applicationContext, "TOKEN"+token, Toast.LENGTH_SHORT).show()
+        //Toast.makeText(applicationContext, "TOKEN"+token, Toast.LENGTH_SHORT).show()
     }
 
-    private fun performLogin(){
+    private fun performLogin() {
         val etUsername = findViewById<EditText>(R.id.txi_username).text.toString()
         val etPassword = findViewById<EditText>(R.id.txi_password).text.toString()
 
@@ -66,34 +69,40 @@ class MainActivity : AppCompatActivity() {
             "username" to etUsername,
             "password" to etPassword
         )
-        println(requestBody)
 
-        val call = apiService.postLogin(requestBody)
-        call.enqueue(object: Callback<LoginResponse>{
-            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                println("estoy en Onresponse")
-                if(response.isSuccessful){
-                    val loginResponse = response.body()
-                    if(loginResponse == null){
-                        Toast.makeText(applicationContext, "Se produjo un error en el servidor", Toast.LENGTH_SHORT).show()
-                        return
-                    }
-                    if(loginResponse != null){
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val retrofit = MascotaRetrofit.getRetrofit().create(ApiService::class.java)
+                    .postLogin(requestBody)
+                val loginResponse = retrofit.body()
+                runOnUiThread {
+                    if (retrofit.isSuccessful) {
+                        if (loginResponse == null) {
+                            Toast.makeText(applicationContext, "Se produjo un error en el servidor", Toast.LENGTH_SHORT).show()
+                            return@runOnUiThread
+                        }
                         createSessionPreference(loginResponse.token)
+                        guardarUsuario(loginResponse.Username)
                         goToMenu()
-                    }else{
-                        Toast.makeText(applicationContext, "Las credenciales son incorrectas", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(applicationContext, "Usuario y/o Password incorrecto", Toast.LENGTH_SHORT).show()
                     }
-                }else{
-                    Toast.makeText(applicationContext, "Se produjo un error en el servidor", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: SocketTimeoutException) {
+                runOnUiThread {
+                    Toast.makeText(applicationContext, "Tiempo de espera agotado al conectar con el servidor", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                runOnUiThread {
+                    Toast.makeText(applicationContext, "Error al conectar con el servidor: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+    }
 
-            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                Toast.makeText(applicationContext, "Se produjo un error en el servidor xD", Toast.LENGTH_SHORT).show()
-            }
-
-        })
+    private fun guardarUsuario(username: String) {
+        val preference = PreferenceHelper.defaultPrefs(this)
+        preference["username"] = username
 
     }
 

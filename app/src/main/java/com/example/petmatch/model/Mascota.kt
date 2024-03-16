@@ -9,5 +9,12 @@ data class Mascota(
     val longuitud: Double,
     val nombre: String,
     val raza: String,
-    val usuario: Usuario
-)
+    val usuario: Usuario,
+    val estado: String,
+    val sexo: String,
+    val tamanio: String,
+    val tipo: String,
+    val visitas: Int
+) {
+    var favorito: Boolean = false
+}

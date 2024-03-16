@@ -5,30 +5,170 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity_listar">
+
     <TextView
         android:id="@+id/lbl_listar_title"
-        android:layout_width="match_parent"
+        android:layout_width="160sp"
         android:layout_height="wrap_content"
-        android:text="Mascotas en Adopción"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="25sp"
+        android:layout_marginTop="17sp"
+        android:fontFamily="@font/nunito_extrabold"
+        android:gravity="start"
+        android:text="@string/mascotas_en_adopci_n_listar"
+        android:textColor="@color/violet"
+        android:textSize="26sp"
         android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginTop="30sp"
+        android:layout_marginStart="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_listar_buscar"
+        android:layout_width="160sp"
+        android:layout_height="40dp"
+        android:paddingStart="10sp"
+        app:layout_constraintEnd_toStartOf="@+id/searchButton"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/rounded_corner_background"
+        android:layout_marginStart="15sp"
+        android:layout_marginEnd="5sp"
+        android:layout_marginTop="20sp"
+        android:textColor="@color/black"
+        android:hint="@string/buscar_listar_asdg"
+        android:textSize="16sp"
+        android:maxLines="1"
+        android:inputType="text"
         android:fontFamily="@font/nunito_extrabold"
         />
+    <ImageButton
+        android:id="@+id/searchButton"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:src="@drawable/buscar"
+        android:background="@drawable/rounded_corner_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20sp"
+        android:layout_marginEnd="15sp"
+
+        />
+    <HorizontalScrollView
+        android:id="@+id/scrl_listar_botonera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_listar_title"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp"
+        android:scrollbars="none"
+        >
+        <LinearLayout
+            android:id="@+id/ll_listar_botonera"
+            android:layout_marginTop="10sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            >
+            <androidx.constraintlayout.utils.widget.MotionButton
+                android:id="@+id/btn_filtro_cerca"
+                android:layout_width="90sp"
+                android:layout_height="30sp"
+                android:text="@string/cerca_tuyo_listar_qws"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito_extrabold"
+                android:background="@drawable/btn_ubicacion"
+                android:layout_marginStart="3sp"
+                android:layout_marginEnd="3sp"
+                />
+            <androidx.constraintlayout.utils.widget.MotionButton
+                android:id="@+id/btn_filtro_popular"
+                android:layout_width="90sp"
+                android:layout_height="30sp"
+                android:text="@string/visitados_listar_nrd"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito_extrabold"
+                android:background="@drawable/btn_ubicacion"
+                android:layout_marginStart="3sp"
+                android:layout_marginEnd="3sp"
+                />
+            <androidx.constraintlayout.utils.widget.MotionButton
+                android:id="@+id/btn_filtro_pequenio"
+                android:layout_width="90sp"
+                android:layout_height="30sp"
+                android:text="@string/peque_o_listar_asfv"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito_extrabold"
+                android:background="@drawable/btn_ubicacion"
+                android:layout_marginStart="3sp"
+                android:layout_marginEnd="3sp"
+                />
+            <androidx.constraintlayout.utils.widget.MotionButton
+                android:id="@+id/btn_filtro_grande"
+                android:layout_width="90sp"
+                android:layout_height="30sp"
+                android:text="@string/grande_listar_cxvw"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito_extrabold"
+                android:background="@drawable/btn_ubicacion"
+                android:layout_marginStart="3sp"
+                android:layout_marginEnd="3sp"
+                />
+            <androidx.constraintlayout.utils.widget.MotionButton
+                android:id="@+id/btn_filtro_macho"
+                android:layout_width="90sp"
+                android:layout_height="30sp"
+                android:text="@string/macho_listar_nds"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito_extrabold"
+                android:background="@drawable/btn_ubicacion"
+                android:layout_marginStart="3sp"
+                android:layout_marginEnd="3sp"
+                />
+            <androidx.constraintlayout.utils.widget.MotionButton
+                android:id="@+id/btn_filtro_hembra"
+                android:layout_width="90sp"
+                android:layout_height="30sp"
+                android:text="@string/hembra_listar_ascz"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito_extrabold"
+                android:background="@drawable/btn_ubicacion"
+                android:layout_marginStart="3sp"
+                android:layout_marginEnd="3sp"
+                />
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_mascotas"
         android:layout_width="match_parent"
         android:layout_height="0sp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginEnd="10sp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/navega_bar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_listar_title"
-        android:layout_marginTop="20sp"
-        android:layout_marginStart="20sp"
-        android:layout_marginEnd="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrl_listar_botonera"
         />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navega_bar"
+        android:layout_width="match_parent"
+        android:layout_height="55sp"
+        android:background="@color/violetligth"
+        app:itemIconTint="?attr/textColorAlertDialogListItem"
+        app:itemTextColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/my_navigation_items"
+        app:shapeAppearanceOverlay="@style/roundedImageViewSmall"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <item android:id="@+id/action_inicio"
+        android:title="Inicio"
+        android:icon="@drawable/home" />
+    <item android:id="@+id/action_favoritos"
+        android:title="Favoritos"
+        android:icon="@drawable/heart2" />
+    <item
+        android:id="@+id/action_agregarpet"
+        android:icon="@drawable/petmas"
+        android:title="Agregar"
+        android:visible="false"/>
+    <item
+        android:id="@+id/action_perfil"
+        android:icon="@drawable/user"
+        android:title="Perfil" />
+    <item
+        android:id="@+id/action_logout"
+        android:icon="@drawable/logout"
+        android:title="Cerrar Sesion" />
 </menu>

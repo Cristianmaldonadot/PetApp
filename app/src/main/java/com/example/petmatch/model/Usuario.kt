@@ -6,6 +6,9 @@ data class Usuario(
     val email: String,
     val idusuario: Int,
     val password: String,
-    val roles: List<Role>?,
-    val username: String
+    val roles: List<Role>,
+    val username: String,
+    val favoritos: List<Favorito>,
+    val nombre:String,
+    val appaterno:String
 )

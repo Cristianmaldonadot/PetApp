@@ -10,4 +10,11 @@
     <color name="bordeInput">#F0ADA8</color>
     <color name="color_backgroud_PetMatch">#FF6E40</color>
     <color name="background_registrarse">#F6D2CF</color>
+    <color name="violet">#7C4DFF</color>
+    <color name="violetligth">#9670FF</color>
+    <color name="gray">#969696</color>
+    <color name="graydark">#434343</color>
+    <color name="grayligth">#E3E3E3</color>
+    <color name="grayligth2">#EFEFEF</color>
+    <color name="yellowm">#FFC107</color>
 </resources>
